@@ -44,22 +44,51 @@
 
 [JavaScript]
 
-```javascript
-function lcm(a, b) {
-    for (let i=Math.max(a,b);i<(a*b)+1;i++) {
-        if (i%a==0 && i%b==0) {
-            return i
-        }
-    }
-}
+1. LCM(최소공배수) 함수와 GCD(최대공약수) 함수 이용
 
-function solution(arr) {
-    while (arr.length > 1) {
-        let a = arr.pop();
-        let b = arr.pop();
-        arr.push(lcm(a, b));
-    }
-    return arr[0]        
-}
-```
+   ```javascript
+   function lcm(a, b) {
+       return a * b / gcd(a, b)
+   }
+   
+   function gcd(a, b) {
+       while (b > 0) {
+           let temp = a;
+           a = b;
+           b = temp % b;
+       }
+       return a;
+   }
+   
+   function solution(arr) {
+       while (arr.length > 1) {
+           arr.push(lcm(arr.pop(), arr.pop()));
+       }    
+       return arr[0];
+   }
+   ```
 
+   
+
+2. LCM만
+
+   ```javascript
+   function lcm(a, b) {
+       for (let i=Math.max(a,b);i<(a*b)+1;i++) {
+           if (i%a==0 && i%b==0) {
+               return i
+           }
+       }
+   }
+   
+   function solution(arr) {
+       while (arr.length > 1) {
+           let a = arr.pop();
+           let b = arr.pop();
+           arr.push(lcm(a, b));
+       }
+       return arr[0]        
+   }
+   ```
+
+   
